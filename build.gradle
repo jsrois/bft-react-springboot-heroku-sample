@@ -51,6 +51,16 @@ task copyFiles(type: Copy) {
     into("./src/main/resources/static")
 }
 
+task webjar(type: Jar) {
+    from(fileTree("build")) {
+        into "META-INF/resources"
+    }
+}
+
+jar.dependsOn(copyFiles)
+
+jar.finalizedBy('webjar')
+
 compileWebClient.dependsOn installFrontendDependencies
 copyFiles.dependsOn compileWebClient
 build.dependsOn copyFiles

@@ -52,7 +52,7 @@ task copyFiles(type: Copy) {
 }
 
 task webjar(type: Jar) {
-    from(fileTree("build")) {
+    from(fileTree("./src/main/resources/static")) {
         into "META-INF/resources"
     }
 }

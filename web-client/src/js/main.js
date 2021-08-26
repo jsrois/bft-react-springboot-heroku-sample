@@ -4,9 +4,11 @@
 import '../scss/main.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {App} from "./App";
+
 
 
 ReactDOM.render(
-    <div className="greeting">⚛️ Hello from React! ⚛️</div>,
+    <App />,
     document.getElementById("app")
 )

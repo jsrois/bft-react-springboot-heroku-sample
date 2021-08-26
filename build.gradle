@@ -53,10 +53,6 @@ task copyFiles(type: Copy) {
     into("./src/main/resources/static")
 }
 
+copyFiles.mustRunAfter compileWebClient
 
-task buildFrontend(dependsOn: [
-        'compileWebClient',
-        'copyFiles'
-])
-
-build.dependsOn buildFrontend
+build.dependsOn compileWebClient

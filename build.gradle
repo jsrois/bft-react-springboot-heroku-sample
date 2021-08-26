@@ -40,19 +40,17 @@ task installFrontendDependencies(type: NpmTask) {
 }
 
 task compileWebClient(type: NpmTask) {
-    dependsOn("installFrontendDependencies")
     workingDir = file('./web-client')
     args = ['run', 'build']
 }
 
 task copyFiles(type: Copy) {
-    dependsOn("compileWebClient")
     from('./web-client/build')
     include("*.html")
     include("*.js")
     into("./src/main/resources/static")
 }
 
-copyFiles.mustRunAfter compileWebClient
-
-build.dependsOn compileWebClient
+compileWebClient.dependsOn installFrontendDependencies
+copyFiles.dependsOn compileWebClient
+build.dependsOn copyFiles
